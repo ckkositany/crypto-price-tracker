@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Price Tracker</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const socket = io();
+
+      socket.on('cryptoData', (data) => {
+        document.getElementById('bitcoin-price').innerText = `Bitcoin: $${data.bitcoin.usd}`;
+        document.getElementById('ethereum-price').innerText = `Ethereum: $${data.ethereum.usd}`;
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Crypto Price Tracker</h1>
+  <p id="bitcoin-price">Bitcoin: Loading...</p>
+  <p id="ethereum-price">Ethereum: Loading...</p>
+</body>
+</html>
